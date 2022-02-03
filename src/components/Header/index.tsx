@@ -12,7 +12,7 @@ export function Header() {
     <header className={styles.headerContainer}>
       <img src="/logo.svg" alt="Jabyer" />
 
-      <p>Rock é vida!</p>
+      <p>Music is life!</p>
 
       <span>{currentDate}</span>
     </header>

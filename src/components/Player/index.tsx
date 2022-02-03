@@ -2,7 +2,7 @@ import styles from './styles.module.scss'
 import 'rc-slider/assets/index.css'
 
 import Image from 'next/image'
-import { useContext, useRef } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import { PlayerContext } from '../../contexts/PlayerContext'
 import Slider from 'rc-slider'
 
@@ -13,8 +13,21 @@ export function Player() {
     episodeList,
     currentEpisodeIndex,
     isPlaying,
-    togglePlay
+    togglePlay,
+    setPlayingState
   } = useContext(PlayerContext)
+
+  useEffect(() => {
+    if(!audioRef.current) {
+      return
+    }
+
+    if(isPlaying) {
+      audioRef.current.play()
+    } else {
+      audioRef.current.pause()
+    }
+  }, [isPlaying])
 
   const episode = episodeList[currentEpisodeIndex]
 
@@ -62,7 +75,10 @@ export function Player() {
         { episode && (
           <audio
             src={episode.url}
+            ref={audioRef}
             autoPlay
+            onPlay={() => setPlayingState(true)}
+            onPause={() => setPlayingState(false)}
           />
         )}
 

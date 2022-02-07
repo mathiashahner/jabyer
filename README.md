@@ -2,7 +2,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, run the fake server to provider data aplication:
+
+```bash
+npm run server
+```
+
+After, run the project in a development server:
 
 ```bash
 npm run dev
